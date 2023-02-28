@@ -22,5 +22,5 @@ int main() {
     char str[] = "ABC123";
     int n = 3;
     left_shift(str, n);
-    printf("%s\n", str);
+    printf("%s", str);
 }
