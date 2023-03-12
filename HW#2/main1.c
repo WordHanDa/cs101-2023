@@ -23,10 +23,6 @@ void generateRandomArray(int arr[]) {
     }
     arr[ARRAY_SIZE - 1] = rand() % 10 + 1;
 }
-void printArray(int arr[]) {
-    for(int i = 0; i < ARRAY_SIZE; i++) {printf("%d ", arr[i]);}
-    printf("\n");
-}
 char* date(){
     char timezone[] = "TZ=Asia/Taipei";
     putenv(timezone);
@@ -50,7 +46,8 @@ int main()
     fprintf(fp,"%s",date());
     for(int i = 0; i < x; i++) {
         generateRandomArray(arr);
-        printArray(arr);
+        for(int i = 0; i < ARRAY_SIZE; i++) {printf("%d ", arr[i]);}
+        printf("\n");
     }
     fclose(fp);
     return 0;
