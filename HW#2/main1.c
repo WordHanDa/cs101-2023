@@ -39,10 +39,9 @@ char* date(){
 }
 int main()
 {
-    int x;
     char lotto[1000];
     srand(time(NULL));
-    int arr[ARRAY_SIZE];
+    int arr[ARRAY_SIZE],x;
     FILE*fp=fopen("lotto.txt","w");
     printf("歡迎光臨長庚樂透購買機台\n請問您要買幾組樂透彩:");
     scanf("%d",&x);
