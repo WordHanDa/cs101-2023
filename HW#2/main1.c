@@ -1,11 +1,3 @@
-/******************************************************************************
-
-Welcome to GDB Online.
-  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
-  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
-  Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -33,22 +25,26 @@ char* date(){
     local_time = localtime(&current_time);
     return asctime(local_time);
 }
-int main()
-{
+int main(){
     char lotto[1000];
     srand(time(NULL));
-    int arr[ARRAY_SIZE],x;
+    int arr[ARRAY_SIZE],x,j,k;
     FILE*fp=fopen("lotto.txt","w");
     printf("歡迎光臨長庚樂透購買機台\n請問您要買幾組樂透彩:");
     scanf("%d",&x);
     printf("已為您購買的 %d 組樂透組合輸出至lotto.txt\n",x);
     fprintf(fp,"========lotto649========\n");
     fprintf(fp,"%s",date());
-    for(int i = 0; i < x; i++) {
+    for(j=0; j<x; j++) {
         generateRandomArray(arr);
-        for(int i = 0; i < ARRAY_SIZE; i++) {printf("%d ", arr[i]);}
-        printf("\n");
+        fprintf(fp,"[%d]: ", j+1);
+        for(int i = 0; i < ARRAY_SIZE; i++) {fprintf(fp,"%d ", arr[i]);}
+        fprintf(fp,"\n");
     }
+    for(k=j; k<5;k++){
+        fprintf(fp,"[%d]: ", k+1);
+        fprintf(fp,"-- -- -- -- -- -- -\n");
+    }
+    fprintf(fp,"========csie@cgu========");
     fclose(fp);
-    return 0;
 }
