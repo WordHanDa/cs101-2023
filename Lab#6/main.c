@@ -1,6 +1,6 @@
 #include <stdio.h>
 int multi(int i,int j){
-    if(j==9&&j==9){
+    if(i==9&&j==9){
         printf("%d*%d=%d\n",i,j,i*j);
         return 0;
     }else if(j==9){
