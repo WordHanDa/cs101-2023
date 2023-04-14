@@ -10,7 +10,7 @@ my_mm_t mms[10] = {{0}};
 
 char* my_calloc(int n, int size) {
     for (int i = 0; i < 10; i++) {
-        if (mms[i].start == NULL) {
+        if (mms[i].start) {
             int mem_size = n * size;
             if (mem_size > (10 - i) * sizeof(int)) {
                 printf("Insufficient memory\n");
