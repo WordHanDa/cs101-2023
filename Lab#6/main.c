@@ -12,7 +12,7 @@ int multi(int i,int j){
         multi(i,j+1);
     }
 }
-int main(){
+int main(){ 
     multi(1,1);
     return 0;
 }
