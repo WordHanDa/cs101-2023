@@ -26,10 +26,10 @@ int main() {
         printf("Failed to open file.\n");
         return 1;
     }
-    int n = 7;
+    int n = 16;
     int i = 0;
     towerOfHanoi(n, 'A', 'C', 'B', &i);
-    printf("\nTotal moves: %d", i);
+    printf("\nTotal moves: %d", 
     fclose(fp);
     return 0;
 }
