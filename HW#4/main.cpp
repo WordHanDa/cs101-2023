@@ -30,6 +30,8 @@ class input{
             }
         }
         void checkerboard_builder(){
+            cout<<"-- Tic Tac Toe -- CSIE@CGU"<<endl;
+            cout<<"player 1 (X) - player 2 (O)"<<endl;
             for(int i=0;i<3;i++){
                 for(int j=0;j<3;j++){
                     char str=(matrix[i][j]=='X'||matrix[i][j]=='O')?matrix[i][j]:' ';
@@ -60,13 +62,16 @@ class TicTacToe:input{
                         win=true;
                     }
                 if(win){
-                    cout<<"Player "<<(sym=='X'?"1":"2")<<" wins"<< endl;
+                    cout<<"==>Player "<<(sym=='X'?"1":"2")<<" wins"<< endl;
                     return;
                 }
             }
         }
         void run(){
             while(n<9&&!win){
+                if(n==8){
+                    cout<<"draw"<<endl;
+                }
                 playerInput();
                 checkerboard_builder();
                 checkWin();
