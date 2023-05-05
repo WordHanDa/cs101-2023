@@ -70,13 +70,13 @@ class TicTacToe:input{
                     cout<<"==>Player "<<(sym=='X'?"1":"2")<<" wins"<< endl;
                     return;
                 }
+                if(n==8){
+                    cout<<"game draw"<<endl;
+                }
             }
         }
         void run(){
             while(n<9&&!win){
-                if(n==8){
-                    cout<<"game draw"<<endl;
-                }
                 playerInput();
                 checkerboard_builder();
                 checkWin();
