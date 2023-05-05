@@ -13,7 +13,7 @@ class input{
                 if(cin.fail()){
                     cout<<"Please enter integers only."<<endl;
                     cin.clear();
-                    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
                     continue;
                 }
                 if(x<1||x>3||y<1||y>3){
