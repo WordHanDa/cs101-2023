@@ -13,7 +13,7 @@ class input{
                 cout<<"Warning Wrong Number"<<endl;
                 playerInput();
             }else if(matrix[y-1][x-1]){
-                cout<<"you can't overwrite"<<endl;
+                cout<<"overwrite!"<<endl;
                 playerInput();
             }else{
                 matrix[y-1][x-1]=(player)?'X':'O';
@@ -23,7 +23,7 @@ class input{
         void checkerboard_builder(){
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
-                    char str=(matrix[i][j])?matrix[i][j]:' ';
+                    char str=(matrix[i][j]=='X'||matrix[i][j]=='O')?matrix[i][j]:' ';
                     cout << str << "|";
                 }
                 cout <<endl;
@@ -33,46 +33,34 @@ class input{
             return player;
         }
 };
+
 class TicTacToe:input{
     private:
         int n=0;
+        bool win = false;
     public:
-        bool checkWin(){
-            for (int i = 0; i < 3; i++) {
-                if (matrix[i][0] == 'X' && matrix[i][1] == 'X' && matrix[i][2] == 'X') {
-                cout << "Player 2 wins" << endl;
-                return true;
-            } else if (matrix[i][0] == 'O' && matrix[i][1] == 'O' && matrix[i][2] == 'O') {
-                cout << "Player 1 wins" << endl;
-                return true;
-            }
-            }
-            for (int j = 0; j < 3; j++) {
-                if (matrix[0][j] == 'X' && matrix[1][j] == 'X' && matrix[2][j] == 'X') {
-                cout << "Player 2 wins" << endl;
-                return true;
-            } else if (matrix[0][j] == 'O' && matrix[1][j] == 'O' && matrix[2][j] == 'O') {
-                cout << "Player 1 wins" << endl;
-                return true;
+        void checkWin() {
+            char symbols[2] = {'X', 'O'};
+                for (char sym : symbols) {
+                    for (int i = 0; i < 3; i++) {
+                        if ((matrix[i][0] == sym && matrix[i][1] == sym && matrix[i][2] == sym) ||  // 水平檢查
+                            (matrix[0][i] == sym && matrix[1][i] == sym && matrix[2][i] == sym)) {   // 垂直檢查
+                            win = true;
+                            break;
+                        }
+                    }
+                    if ((matrix[0][0] == sym && matrix[1][1] == sym && matrix[2][2] == sym) ||      // 對角線檢查
+                        (matrix[0][2] == sym && matrix[1][1] == sym && matrix[2][0] == sym)) {
+                        win = true;
+                    }
+                if (win) {
+                    cout << "Player " << (sym == 'X' ? "1" : "2") << " wins" << endl;
+                    return;
                 }
             }
-            if (matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X') {
-                cout << "Player 2 wins" << endl;
-                return true;
-            } else if (matrix[0][0] == 'O' && matrix[1][1] == 'O' && matrix[2][2] == 'O') {
-                cout << "Player 1 wins" << endl;
-                return true;
-            } else if (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X') {
-                cout << "Player 2 wins" << endl;
-                return true;
-            } else if (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O') {
-                cout << "Player 1 wins" << endl;
-                return true;
-            }
-        return false;
         }
         void run(){
-            while(n<9){
+            while(n<9&&!win){
                 playerInput();
                 checkerboard_builder();
                 checkWin();
@@ -80,6 +68,7 @@ class TicTacToe:input{
             }
         }
 };
+
 int main()
 {
     TicTacToe game;
