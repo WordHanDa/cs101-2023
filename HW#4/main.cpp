@@ -75,7 +75,7 @@ class TicTacToe:input{
         void run(){
             while(n<9&&!win){
                 if(n==8){
-                    cout<<"draw"<<endl;
+                    cout<<"game draw"<<endl;
                 }
                 playerInput();
                 checkerboard_builder();
