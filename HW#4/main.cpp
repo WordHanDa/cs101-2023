@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <limits>
 using namespace std;
 class input{
     private:
@@ -7,30 +7,36 @@ class input{
     public:
         int x,y;
         char matrix[3][3];
-        void playerInput(){
-            cin>>x>>y;
-            if(x>3||y>3){
-                cout<<"Warning Wrong Number"<<endl;
-                playerInput();
-            }else if(matrix[y-1][x-1]){
-                cout<<"overwrite!"<<endl;
-                playerInput();
-            }else{
+        void playerInput() {
+            while (true) {
+                cin >> x >> y;
+                if (cin.fail()) {
+                    cout << "Please enter integers only." << endl;
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    continue;
+                }
+                if (x<1||x>3||y<1||y>3) {
+                    cout << "Please enter valid coordinates (1-3)." << endl;
+                    continue;
+                }
+                if (matrix[y-1][x-1]) {
+                    cout << "This spot is already taken. Please choose another spot." << endl;
+                    continue;
+                }
                 matrix[y-1][x-1]=(player)?'X':'O';
-                player=(player)?false:true;
+                player=!player;
+                break;
             }
         }
         void checkerboard_builder(){
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
+            for (int i=0;i<3;i++) {
+                for (int j=0;j<3;j++) {
                     char str=(matrix[i][j]=='X'||matrix[i][j]=='O')?matrix[i][j]:' ';
                     cout << str << "|";
                 }
                 cout <<endl;
             }
-        }
-        bool getPlayerStatus(){
-            return player;
         }
 };
 
