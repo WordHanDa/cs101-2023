@@ -3,9 +3,10 @@
 using namespace std;
 class input{
     private:
+        int x,y;
         bool player=true;
     public:
-        int x,y;
+        
         char matrix[3][3];
         void playerInput() {
             while (true) {
