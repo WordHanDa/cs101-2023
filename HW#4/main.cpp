@@ -3,28 +3,33 @@
 using namespace std;
 class input{
     private:
-        int x,y;
+        int x,y,num;
         bool player=true;
+        void transfer(){
+            cin>>num;
+            x=(num-1)%3;
+            y=(num-1)/3;
+        }
     public:
         char matrix[3][3];
         void playerInput(){
             while(true){
-                cin>>x>>y;
+                transfer();
                 if(cin.fail()){
                     cout<<"Please enter integers only."<<endl;
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');
                     continue;
                 }
-                if(x<1||x>3||y<1||y>3){
-                    cout<<"Please enter valid coordinates (1-3)."<<endl;
+                if(num>9||num<1){
+                    cout<<"Please enter valid coordinates (1-9)."<<endl;
                     continue;
                 }
-                if(matrix[y-1][x-1]){
+                if(matrix[y][x]){
                     cout << "This spot is already taken. Please choose another spot." << endl;
                     continue;
                 }
-                matrix[y-1][x-1]=(player)?'X':'O';
+                matrix[y][x]=(player)?'X':'O';
                 player=!player;
                 break;
             }
