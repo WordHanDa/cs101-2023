@@ -11,9 +11,10 @@ class Fueltank{
         m_Gas_grade=Gas;
     }
     int fuel_up(int v,int gas){
-        if(v>3000){
-            cout<<"Error: FueltankCapacity: "<<m_FueltankCapacity<<endl;
-        }else if(gas!=m_Gas_grade){
+        if(v>=3000){
+            cout<<"Error: FueltankCapacity: "<<m_FueltankCapacity<<"but fuelup: "<<v<<endl;
+        }
+        if(gas!=m_Gas_grade){
             cout<<"Error: Correct Gas_grade: "<<m_Gas_grade<<endl;
         }
         return 0;
@@ -108,5 +109,5 @@ int main(){
     cout<<car_1.m_brand<<":Gas grade = "<<car_1.get_gas_grade()<<endl;
     car_1.set_gas_grade(95);
     cout<<car_1.m_brand<<":Gas grade = "<<car_1.get_gas_grade()<<endl;
-    car_1.fuel_up(300,95);
+    car_1.fuel_up(10000,93);
 }
