@@ -1,36 +1,30 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-
-using namespace std;
-
-class ReplaceMystring {
-public:
-    void replaceString(const string& str, const string& str2) {
-        ifstream in("main.cpp");
-        ofstream out("rmain.cpp");
-        if (!in.is_open()) {
-            cout << "Failed to open input file." << endl;
-            return;
-        }
-
-        string line;
-        while (getline(in, line)) {
-            size_t pos = line.find(str);
-            while (pos != string::npos) {
-                line.replace(pos, str.length(), str2);
-                pos = line.find(str, pos + str2.length());
-            }
-            out << line << endl;
-        }
-
-        in.close();
-        out.close();
+#include<iostream> 
+ #include<fstream> 
+ #include<string> 
+  
+ using namespace std; 
+  
+ class ReplaceMyString{ 
+ public: 
+ void replaceString(string s1, string s2){ 
+     string str; 
+     ifstream in("main.cpp"); 
+     ofstream out("rmain.cpp"); 
+     while(!in.eof()){
+         getline(in, str);
+         for(int i=0 ;i<str.size();i++){
+             string sub=str.substr(i,s1.size());
+             if(sub == s1)
+             str.replace(str.begin()+i, str.begin()+i+2, s2);
+         }
+         out<<str<<endl;
+     }
+     
     }
-};
-
-int main() {
-    ReplaceMystring my;
-    my.replaceString("IU", "IU is the best");
-    return 0;
-}
+ }; 
+  
+ int main(){ 
+     ReplaceMyString my; 
+     my.replaceString("IU", "IU is best");
+     return 0; 
+ }
